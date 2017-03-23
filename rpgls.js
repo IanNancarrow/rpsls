@@ -35,11 +35,12 @@ var wipeScreen = function () {
 
 //*******Variables*******
 
-var rock;
-var paper;
-var scissors;
-var lizard;
-var spock;
+var rock = "rock";
+var paper = "paper";
+var scissors = "scissors";
+var lizard = "lizard";
+var spock = "spock";
+var pChoice;
 
 //*******Functions*******
 
@@ -48,17 +49,18 @@ function mainMenu() {
 	menuAnimation();
 	userPrompt.question("", function(choice) {
 		if (choice == "1") {
-
+			pChoice = rock;
 		} else if (choice == "2") {
-
+			pChoice = paper;
 		} else if (choice == "3") {
-
+			pChoice = scissors;
 		} else if (choice == "4") {
-
+			pChoice = lizard;
 		} else if (choice == "5") {
-
+			pChoice = spock;
 		} else if (choice == "0") {
-
+			console.log("Thank you for playing!")
+			process.exit();
 		} else {
 			console.log("INCORRECT ENTRY.")
 			sleep(2000);
@@ -97,19 +99,62 @@ function menuAnimation() {
 }
 
 function comparison() {
+	var comChoice = Math.floor((Math.random()* 5) + 1);
+	// 1=Rock, 2=Paper, 3=Scissors, 4=Lizard, 5=Spock
 
+	//Rock Choices
+	if (pChoice == rock) {
+		if (comChoice == 1) {
+			comChoice = rock;
+			draw();
+		} else if (comChoice == 2) {
+			comChoice = rock;
+			lose();
+		} else if (comChoice == 3) {
+			comChoice = rock;
+			win();
+		} else if (comChoice == 4) {
+			comChoice = rock;
+			win();
+		} else if (comChoice == 5) {
+			comChoice = rock;
+			lose();
+		}
+	}
+	
 }
 
 function win() {
-
+	sleep(1000);
+	console.log("You used "+ pChoice +" against " + comChoice);
+	sleep(1000);
+	console.log("\n              Winner!")
+	sleep(2000);
+	userPrompt.question("\nPress Enter to return to Main Menu", function(entry) {
+        mainMenu();
+    });
 }
 
 function lose() {
-
+	sleep(1000);
+	console.log("You used "+ pChoice +" against " + comChoice);
+	sleep(1000);
+	console.log("\n               Lost!")
+	sleep(2000);
+	userPrompt.question("\nPress Enter to return to Main Menu", function(entry) {
+        mainMenu();
+	});
 }
 
 function draw() {
-
+	sleep(1000);
+	console.log("You used "+ pChoice +" against " + comChoice);
+	sleep(1000);
+	console.log("\n               Draw!")
+	sleep(2000);
+	userPrompt.question("\nPress Enter to return to Main Menu", function(entry) {
+        mainMenu();
+	});
 }
 
 
@@ -119,8 +164,8 @@ function draw() {
 
 //*******Runners********
 
-mainMenu();
-
+//mainMenu();
+comparison();
 
 
 
