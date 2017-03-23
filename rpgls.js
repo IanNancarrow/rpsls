@@ -41,6 +41,7 @@ var scissors = "scissors";
 var lizard = "lizard";
 var spock = "spock";
 var pChoice;
+var comChoice;
 
 //*******Functions*******
 
@@ -50,14 +51,19 @@ function mainMenu() {
 	userPrompt.question("", function(choice) {
 		if (choice == "1") {
 			pChoice = rock;
+			comparison();
 		} else if (choice == "2") {
 			pChoice = paper;
+			comparison();
 		} else if (choice == "3") {
 			pChoice = scissors;
+			comparison();
 		} else if (choice == "4") {
 			pChoice = lizard;
+			comparison();
 		} else if (choice == "5") {
 			pChoice = spock;
+			comparison();
 		} else if (choice == "0") {
 			console.log("Thank you for playing!")
 			process.exit();
@@ -99,7 +105,7 @@ function menuAnimation() {
 }
 
 function comparison() {
-	var comChoice = Math.floor((Math.random()* 5) + 1);
+	comChoice = Math.floor((Math.random()* 5) + 1);
 	// 1=Rock, 2=Paper, 3=Scissors, 4=Lizard, 5=Spock
 
 	//Rock Choices
@@ -108,17 +114,93 @@ function comparison() {
 			comChoice = rock;
 			draw();
 		} else if (comChoice == 2) {
-			comChoice = rock;
+			comChoice = paper;
 			lose();
 		} else if (comChoice == 3) {
-			comChoice = rock;
+			comChoice = scissors;
 			win();
 		} else if (comChoice == 4) {
-			comChoice = rock;
+			comChoice = lizard;
 			win();
 		} else if (comChoice == 5) {
+			comChoice = spock;
+			lose();
+		}
+	}
+
+	if (pChoice == paper) {
+		if (comChoice == 1) {
+			comChoice = rock;
+			win();
+		} else if (comChoice == 2) {
+			comChoice = paper;
+			draw();
+		} else if (comChoice == 3) {
+			comChoice = scissors;
+			lose();
+		} else if (comChoice == 4) {
+			comChoice = lizard;
+			lose();
+		} else if (comChoice == 5) {
+			comChoice = spock;
+			win();
+		}
+	}
+
+	if (pChoice == scissors) {
+		if (comChoice == 1) {
 			comChoice = rock;
 			lose();
+		} else if (comChoice == 2) {
+			comChoice = paper;
+			win();
+		} else if (comChoice == 3) {
+			comChoice = scissors;
+			draw();
+		} else if (comChoice == 4) {
+			comChoice = lizard;
+			win();
+		} else if (comChoice == 5) {
+			comChoice = spock;
+			lose();
+		}
+	}
+
+	if (pChoice == lizard) {
+		if (comChoice == 1) {
+			comChoice = rock;
+			lose();
+		} else if (comChoice == 2) {
+			comChoice = paper;
+			win();
+		} else if (comChoice == 3) {
+			comChoice = scissors;
+			lose();
+		} else if (comChoice == 4) {
+			comChoice = lizard;
+			draw();
+		} else if (comChoice == 5) {
+			comChoice = spock;
+			win();
+		}
+	}
+
+	if (pChoice == spock) {
+		if (comChoice == 1) {
+			comChoice = rock;
+			win();
+		} else if (comChoice == 2) {
+			comChoice = paper;
+			draw();
+		} else if (comChoice == 3) {
+			comChoice = scissors;
+			lose();
+		} else if (comChoice == 4) {
+			comChoice = lizard;
+			lose();
+		} else if (comChoice == 5) {
+			comChoice = spock;
+			win();
 		}
 	}
 	
@@ -164,8 +246,8 @@ function draw() {
 
 //*******Runners********
 
-//mainMenu();
-comparison();
+mainMenu();
+//comparison();
 
 
 
